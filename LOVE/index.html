@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>饭团宝宝一周岁啦！</title>
+		<!-- 外部资源 -->
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+			rel="stylesheet"
+		/>
+
+		<!-- Tailwind 配置 -->
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: {
+							baby: {
+								yellow: "#FFF9C4",
+								blue: "#E3F2FD",
+								pink: "#FCE4EC",
+								green: "#E8F5E9",
+								primary: "#FFC107",
+							},
+						},
+						fontFamily: {
+							cute: [
+								'"Comic Sans MS"',
+								'"Marker Felt"',
+								"cursive",
+							],
+							main: ['"Noto Sans SC"', "sans-serif"],
+						},
+						animation: {
+							float: "float 3s ease-in-out infinite",
+							wiggle: "wiggle 1s ease-in-out infinite",
+							"spin-slow": "spin 8s linear infinite",
+							"pulse-slow":
+								"pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+						},
+						keyframes: {
+							float: {
+								"0%, 100%": { transform: "translateY(0)" },
+								"50%": { transform: "translateY(-10px)" },
+							},
+							wiggle: {
+								"0%, 100%": { transform: "rotate(-3deg)" },
+								"50%": { transform: "rotate(3deg)" },
+							},
+						},
+					},
+				},
+			};
+		</script>
+
+		<!-- 自定义样式 -->
+		<style type="text/tailwindcss">
+			@layer utilities {
+				.text-shadow {
+					text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+				}
+				.border-dash {
+					border-style: dashed;
+				}
+				.photo-frame {
+					position: relative;
+				}
+				.photo-frame::before {
+					content: "";
+					position: absolute;
+					top: -5px;
+					left: -5px;
+					right: -5px;
+					bottom: -5px;
+					border: 2px solid #ffc107;
+					border-radius: 8px;
+					z-index: -1;
+				}
+				.cake-candle {
+					position: relative;
+				}
+				.cake-candle::after {
+					content: "";
+					position: absolute;
+					top: -10px;
+					left: 50%;
+					transform: translateX(-50%);
+					width: 4px;
+					height: 15px;
+					background-color: #ff5722;
+					border-radius: 2px;
+				}
+				.cake-candle::before {
+					content: "";
+					position: absolute;
+					top: -20px;
+					left: 50%;
+					transform: translateX(-50%);
+					width: 8px;
+					height: 8px;
+					background-color: #ff9800;
+					border-radius: 50%;
+					box-shadow: 0 0 10px 3px #ff9800;
+					animation: flicker 1s infinite alternate;
+				}
+				@keyframes flicker {
+					0% {
+						opacity: 0.7;
+					}
+					100% {
+						opacity: 1;
+					}
+				}
+				.confetti {
+					position: absolute;
+					width: 10px;
+					height: 10px;
+					animation: fall 5s linear infinite;
+				}
+				@keyframes fall {
+					0% {
+						transform: translateY(-100vh) rotate(0deg);
+						opacity: 1;
+					}
+					100% {
+						transform: translateY(100vh) rotate(360deg);
+						opacity: 0;
+					}
+				}
+			}
+
+			/* 平滑滚动 */
+			html {
+				scroll-behavior: smooth;
+			}
+
+			/* 加载字体 */
+			@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap");
+		</style>
+	</head>
+
+	<body
+		class="bg-gradient-to-b from-baby-yellow/30 to-baby-blue/30 min-h-screen font-main text-gray-800 overflow-x-hidden relative"
+	>
+		<!-- 装饰元素容器 -->
+		<div
+			id="decorations"
+			class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+		></div>
+
+		<!-- 顶部庆祝区域 -->
+		<header
+			class="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center z-10"
+		>
+			<!-- 标题装饰 -->
+			<div
+				class="absolute -top-10 left-1/2 transform -translate-x-1/2 w-full max-w-md flex justify-between pointer-events-none"
+			>
+				<div
+					class="w-16 h-16 bg-baby-pink rounded-full flex items-center justify-center animate-float"
+					style="animation-delay: 0s"
+				>
+					<i class="fa fa-star text-2xl text-pink-500"></i>
+				</div>
+				<div
+					class="w-12 h-12 bg-baby-blue rounded-full flex items-center justify-center animate-float"
+					style="animation-delay: 0.5s"
+				>
+					<i class="fa fa-gift text-xl text-blue-500"></i>
+				</div>
+				<div
+					class="w-14 h-14 bg-baby-green rounded-full flex items-center justify-center animate-float"
+					style="animation-delay: 1s"
+				>
+					<i class="fa fa-heart text-xl text-green-500"></i>
+				</div>
+				<div
+					class="w-10 h-10 bg-baby-yellow rounded-full flex items-center justify-center animate-float"
+					style="animation-delay: 1.5s"
+				>
+					<i class="fa fa-birthday-cake text-lg text-yellow-600"></i>
+				</div>
+			</div>
+
+			<!-- 主标题 -->
+			<h1
+				class="font-cute text-[clamp(2.5rem,10vw,5rem)] font-bold text-baby-primary mb-4 animate-pulse-slow text-shadow"
+			>
+				饭团宝宝
+			</h1>
+			<div class="flex items-center justify-center gap-3 mb-8">
+				<div class="h-0.5 w-16 bg-baby-primary"></div>
+				<h2
+					class="font-cute text-[clamp(1.8rem,6vw,3.5rem)] text-orange-500 cake-candle"
+				>
+					1岁啦！
+				</h2>
+				<div class="h-0.5 w-16 bg-baby-primary"></div>
+			</div>
+
+			<!-- 副标题 -->
+			<p
+				class="text-[clamp(1rem,3vw,1.3rem)] max-w-lg mx-auto mb-12 text-gray-700 leading-relaxed"
+			>
+				感谢你来到这个世界，带来了无尽的欢乐与温暖。
+				愿你健康快乐地成长，探索这个美好的世界！
+			</p>
+
+			<!-- 主视觉 -->
+			<div
+				class="relative w-[clamp(200px,60vw,400px)] h-[clamp(200px,60vw,400px)] rounded-full bg-white p-3 shadow-xl mb-16 animate-float"
+			>
+				<div class="w-full h-full rounded-full overflow-hidden">
+					<img
+						src="https://picsum.photos/seed/baby1/400/400"
+						alt="饭团宝宝"
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div
+					class="absolute -bottom-5 -right-5 w-20 h-20 bg-baby-pink rounded-full flex items-center justify-center shadow-lg animate-spin-slow"
+				>
+					<span class="font-cute text-white text-lg">爱你</span>
+				</div>
+			</div>
+
+			<!-- 滚动提示 -->
+			<a href="#timeline" class="text-orange-500 animate-bounce">
+				<i class="fa fa-chevron-down text-2xl"></i>
+				<p class="mt-2 text-sm">查看成长记录</p>
+			</a>
+		</header>
+
+		<!-- 成长时间线 -->
+		<section id="timeline" class="py-20 px-4 relative z-10">
+			<div class="max-w-4xl mx-auto">
+				<h2
+					class="font-cute text-[clamp(1.8rem,5vw,3rem)] text-orange-500 mb-16 text-center"
+				>
+					饭团的成长足迹
+				</h2>
+
+				<div class="relative">
+					<!-- 时间线中轴线 -->
+					<div
+						class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-baby-primary/50"
+					></div>
+
+					<!-- 时间点1：出生 -->
+					<div class="relative flex justify-end mb-16">
+						<div class="w-5/12 text-right pr-8">
+							<div class="bg-white rounded-xl p-6 shadow-lg">
+								<h3
+									class="font-cute text-xl text-orange-500 mb-2"
+								>
+									0个月 · 我出生啦！
+								</h3>
+								<p class="text-gray-700">
+									今天，我来到了这个世界，体重3.2kg，身高50cm。第一次见到爸爸妈妈，他们看起来好开心呀！
+								</p>
+							</div>
+						</div>
+						<div
+							class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-baby-primary border-4 border-white shadow"
+						></div>
+						<div class="w-5/12"></div>
+					</div>
+
+					<!-- 时间点2：满月 -->
+					<div class="relative flex justify-start mb-16">
+						<div class="w-5/12"></div>
+						<div
+							class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-baby-primary border-4 border-white shadow"
+						></div>
+						<div class="w-5/12 pl-8">
+							<div class="bg-white rounded-xl p-6 shadow-lg">
+								<h3
+									class="font-cute text-xl text-orange-500 mb-2"
+								>
+									1个月 · 满月啦！
+								</h3>
+								<p class="text-gray-700">
+									我满月了，已经会对着爸爸妈妈笑了。医生说我长得很健康，是个乖宝宝。
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- 时间点3：百天 -->
+					<div class="relative flex justify-end mb-16">
+						<div class="w-5/12 text-right pr-8">
+							<div class="bg-white rounded-xl p-6 shadow-lg">
+								<h3
+									class="font-cute text-xl text-orange-500 mb-2"
+								>
+									3个月 · 百天纪念
+								</h3>
+								<p class="text-gray-700">
+									今天拍了百天照，我穿着可爱的衣服，摄影师叔叔一直逗我笑。我已经会翻身了哦！
+								</p>
+							</div>
+						</div>
+						<div
+							class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-baby-primary border-4 border-white shadow"
+						></div>
+						<div class="w-5/12"></div>
+					</div>
+
+					<!-- 时间点4：半岁 -->
+					<div class="relative flex justify-start mb-16">
+						<div class="w-5/12"></div>
+						<div
+							class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-baby-primary border-4 border-white shadow"
+						></div>
+						<div class="w-5/12 pl-8">
+							<div class="bg-white rounded-xl p-6 shadow-lg">
+								<h3
+									class="font-cute text-xl text-orange-500 mb-2"
+								>
+									6个月 · 半岁啦！
+								</h3>
+								<p class="text-gray-700">
+									我开始添加辅食了，米粉好好吃！已经会坐得很稳，还会发出"咿咿呀呀"的声音想说话。
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- 时间点5：周岁 -->
+					<div class="relative flex justify-end">
+						<div class="w-5/12 text-right pr-8">
+							<div
+								class="bg-white rounded-xl p-6 shadow-lg border-2 border-baby-primary"
+							>
+								<h3
+									class="font-cute text-xl text-orange-500 mb-2"
+								>
+									12个月 · 一周岁！
+								</h3>
+								<p class="text-gray-700">
+									今天我一岁啦！已经会扶着东西走路，会叫"爸爸""妈妈"，还长出了8颗小牙齿。我是个健康快乐的宝宝！
+								</p>
+							</div>
+						</div>
+						<div
+							class="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-baby-primary border-4 border-white shadow animate-pulse"
+						></div>
+						<div class="w-5/12"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 照片墙 -->
+		<section class="py-20 px-4 bg-baby-yellow/20 relative z-10">
+			<h2
+				class="font-cute text-[clamp(1.8rem,5vw,3rem)] text-orange-500 mb-12 text-center"
+			>
+				饭团的可爱瞬间
+			</h2>
+
+			<div
+				class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+			>
+				<!-- 照片1 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby2/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片2 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby3/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片3 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby4/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片4 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby5/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片5 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby6/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片6 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby7/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片7 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby8/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+
+				<!-- 照片8 -->
+				<div
+					class="photo-frame rounded-lg overflow-hidden shadow-md transform transition hover:scale-105 hover:shadow-lg"
+				>
+					<img
+						src="https://picsum.photos/seed/baby9/300/300"
+						alt="饭团的照片"
+						class="w-full h-48 md:h-56 object-cover"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- 祝福区域 -->
+		<section id="wishes" class="py-20 px-4 relative z-10">
+			<div class="max-w-4xl mx-auto">
+				<h2
+					class="font-cute text-[clamp(1.8rem,5vw,3rem)] text-orange-500 mb-12 text-center"
+				>
+					来自大家的祝福
+				</h2>
+
+				<!-- 祝福列表 -->
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+					<!-- 祝福1 -->
+					<div
+						class="bg-white rounded-xl p-6 shadow-md border-l-4 border-baby-pink"
+					>
+						<div class="flex items-center mb-4">
+							<div
+								class="w-12 h-12 rounded-full overflow-hidden mr-4"
+							>
+								<img
+									src="https://picsum.photos/seed/family1/100/100"
+									alt="妈妈"
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div>
+								<h4 class="font-cute text-lg text-gray-800">
+									妈妈
+								</h4>
+								<p class="text-sm text-gray-500">
+									最爱饭团的人
+								</p>
+							</div>
+						</div>
+						<p class="text-gray-700">
+							亲爱的饭团，谢谢你来到妈妈的生命里，带给我无尽的幸福。愿你永远健康快乐，妈妈会永远爱你，保护你！
+						</p>
+					</div>
+
+					<!-- 祝福2 -->
+					<div
+						class="bg-white rounded-xl p-6 shadow-md border-l-4 border-baby-blue"
+					>
+						<div class="flex items-center mb-4">
+							<div
+								class="w-12 h-12 rounded-full overflow-hidden mr-4"
+							>
+								<img
+									src="https://picsum.photos/seed/family2/100/100"
+									alt="爸爸"
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div>
+								<h4 class="font-cute text-lg text-gray-800">
+									爸爸
+								</h4>
+								<p class="text-sm text-gray-500">
+									想陪饭团长大的人
+								</p>
+							</div>
+						</div>
+						<p class="text-gray-700">
+							饭团，我的小宝贝，一周岁快乐！爸爸会努力工作，给你最好的生活，陪你一起探索这个世界的美好。
+						</p>
+					</div>
+
+					<!-- 祝福3 -->
+					<div
+						class="bg-white rounded-xl p-6 shadow-md border-l-4 border-baby-green"
+					>
+						<div class="flex items-center mb-4">
+							<div
+								class="w-12 h-12 rounded-full overflow-hidden mr-4"
+							>
+								<img
+									src="https://picsum.photos/seed/family3/100/100"
+									alt="奶奶"
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div>
+								<h4 class="font-cute text-lg text-gray-800">
+									奶奶
+								</h4>
+								<p class="text-sm text-gray-500">
+									总想着给饭团做好吃的
+								</p>
+							</div>
+						</div>
+						<p class="text-gray-700">
+							我的乖饭团，一岁啦！奶奶希望你每天都开开心心，多吃点饭快快长大，奶奶会给你做很多好吃的！
+						</p>
+					</div>
+
+					<!-- 祝福4 -->
+					<div
+						class="bg-white rounded-xl p-6 shadow-md border-l-4 border-baby-primary"
+					>
+						<div class="flex items-center mb-4">
+							<div
+								class="w-12 h-12 rounded-full overflow-hidden mr-4"
+							>
+								<img
+									src="https://picsum.photos/seed/family4/100/100"
+									alt="爷爷"
+									class="w-full h-full object-cover"
+								/>
+							</div>
+							<div>
+								<h4 class="font-cute text-lg text-gray-800">
+									爷爷
+								</h4>
+								<p class="text-sm text-gray-500">
+									想教饭团踢足球的人
+								</p>
+							</div>
+						</div>
+						<p class="text-gray-700">
+							饭团，爷爷的小宝贝！一周岁快乐！等你再长大点，爷爷教你踢足球，带你去公园玩，看着你健康成长！
+						</p>
+					</div>
+				</div>
+
+				<!-- 写下祝福 -->
+				<div class="bg-white rounded-xl p-6 md:p-8 shadow-lg">
+					<h3
+						class="font-cute text-xl text-orange-500 mb-4 text-center"
+					>
+						留下你的祝福
+					</h3>
+
+					<form id="wish-form" class="space-y-4">
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label
+									for="name"
+									class="block text-sm font-medium text-gray-700 mb-1"
+									>你的名字</label
+								>
+								<input
+									type="text"
+									id="name"
+									class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-baby-primary focus:border-baby-primary transition"
+									placeholder="例如：阿姨"
+								/>
+							</div>
+							<div>
+								<label
+									for="relation"
+									class="block text-sm font-medium text-gray-700 mb-1"
+									>和饭团的关系</label
+								>
+								<input
+									type="text"
+									id="relation"
+									class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-baby-primary focus:border-baby-primary transition"
+									placeholder="例如：邻居"
+								/>
+							</div>
+						</div>
+
+						<div>
+							<label
+								for="message"
+								class="block text-sm font-medium text-gray-700 mb-1"
+								>祝福语</label
+							>
+							<textarea
+								id="message"
+								rows="4"
+								class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-baby-primary focus:border-baby-primary transition"
+								placeholder="写下对饭团的祝福..."
+							></textarea>
+						</div>
+
+						<button
+							type="submit"
+							class="w-full bg-baby-primary hover:bg-orange-400 text-white font-cute py-3 px-6 rounded-lg transition transform hover:scale-[1.02]"
+						>
+							提交祝福
+						</button>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- 祝福成功弹窗 (默认隐藏) -->
+		<div
+			id="wish-modal"
+			class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+		>
+			<div
+				class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center transform transition-all animate-float"
+			>
+				<div
+					class="w-20 h-20 bg-baby-primary rounded-full flex items-center justify-center mx-auto mb-6"
+				>
+					<i class="fa fa-heart text-4xl text-white"></i>
+				</div>
+
+				<h3 class="font-cute text-2xl text-orange-500 mb-4">
+					祝福已收到！
+				</h3>
+
+				<p class="text-gray-700 mb-6">
+					感谢你对饭团的祝福，这份心意我们会好好珍藏的！
+				</p>
+
+				<button
+					id="close-wish-modal"
+					class="bg-baby-primary hover:bg-orange-400 text-white font-cute py-3 px-8 rounded-lg transition"
+				>
+					确定
+				</button>
+			</div>
+		</div>
+
+		<!-- 页脚 -->
+		<footer class="py-8 px-4 bg-orange-50 text-center relative z-10">
+			<p class="font-cute text-orange-600 text-xl mb-2">
+				饭团宝宝一周岁纪念
+			</p>
+			<p class="text-sm text-gray-600">
+				<i class="fa fa-calendar mr-1"></i> 永远的美好回忆
+			</p>
+		</footer>
+
+		<!-- JavaScript -->
+		<script>
+			// 创建装饰元素
+			function createDecorations() {
+				const container = document.getElementById("decorations");
+				const decorationsCount = 50;
+				const shapes = ["circle", "square", "star"];
+
+				for (let i = 0; i < decorationsCount; i++) {
+					const decoration = document.createElement("div");
+					const shape =
+						shapes[Math.floor(Math.random() * shapes.length)];
+
+					// 设置形状
+					if (shape === "circle") {
+						decoration.classList.add("rounded-full");
+					} else if (shape === "square") {
+						decoration.classList.add("rounded-sm");
+					} else if (shape === "star") {
+						decoration.innerHTML = '<i class="fa fa-star"></i>';
+					}
+
+					// 设置大小和位置
+					const size = Math.random() * 15 + 5;
+					decoration.style.width = `${size}px`;
+					decoration.style.height = `${size}px`;
+					decoration.style.left = `${Math.random() * 100}vw`;
+					decoration.style.top = `${Math.random() * 100}vh`;
+
+					// 设置颜色
+					const colors = [
+						"#FFC107",
+						"#F8BBD0",
+						"#BBDEFB",
+						"#C8E6C9",
+						"#FFCDD2",
+					];
+					const color =
+						colors[Math.floor(Math.random() * colors.length)];
+					decoration.style.backgroundColor =
+						shape !== "star" ? color : "transparent";
+					decoration.style.color =
+						shape === "star" ? color : "transparent";
+
+					// 设置动画
+					decoration.style.animation = `float ${
+						Math.random() * 6 + 4
+					}s ease-in-out infinite`;
+					decoration.style.animationDelay = `${Math.random() * 5}s`;
+					decoration.style.opacity = Math.random() * 0.5 + 0.1;
+
+					container.appendChild(decoration);
+				}
+			}
+
+			// 表单提交处理
+			document
+				.getElementById("wish-form")
+				.addEventListener("submit", function (e) {
+					e.preventDefault();
+
+					// 获取表单数据（实际应用中可以发送到服务器）
+					const name = document.getElementById("name").value;
+					const relation = document.getElementById("relation").value;
+					const message = document.getElementById("message").value;
+
+					if (name && message) {
+						// 显示成功弹窗
+						document
+							.getElementById("wish-modal")
+							.classList.remove("hidden");
+
+						// 重置表单
+						this.reset();
+
+						// 创建庆祝彩屑
+						createConfetti();
+					}
+				});
+
+			// 关闭祝福弹窗
+			document
+				.getElementById("close-wish-modal")
+				.addEventListener("click", function () {
+					document
+						.getElementById("wish-modal")
+						.classList.add("hidden");
+				});
+
+			// 创建庆祝彩屑
+			function createConfetti() {
+				const container = document.getElementById("decorations");
+				const confettiCount = 80;
+
+				for (let i = 0; i < confettiCount; i++) {
+					const confetti = document.createElement("div");
+					confetti.classList.add("confetti");
+
+					// 随机大小
+					const size = Math.random() * 8 + 4;
+					confetti.style.width = `${size}px`;
+					confetti.style.height = `${size}px`;
+
+					// 随机位置
+					confetti.style.left = `${Math.random() * 100}vw`;
+
+					// 随机动画
+					confetti.style.animationDuration = `${
+						Math.random() * 3 + 2
+					}s`;
+					confetti.style.animationDelay = `${Math.random() * 2}s`;
+
+					// 随机颜色
+					const colors = [
+						"#FFC107",
+						"#F8BBD0",
+						"#BBDEFB",
+						"#C8E6C9",
+						"#FFCDD2",
+						"#E1BEE7",
+						"#FFE0B2",
+					];
+					confetti.style.backgroundColor =
+						colors[Math.floor(Math.random() * colors.length)];
+
+					container.appendChild(confetti);
+
+					// 动画结束后移除
+					setTimeout(() => {
+						confetti.remove();
+					}, parseFloat(confetti.style.animationDuration) * 1000);
+				}
+			}
+
+			// 页面加载完成后创建装饰
+			window.addEventListener("load", createDecorations);
+		</script>
+	</body>
+</html>
